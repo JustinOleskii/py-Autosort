@@ -5,14 +5,16 @@ from os import path
 
 folderLocation = glob.glob(r"C:\Users\joash\Downloads\*")
 
-documentExtensions = ['.pdf', '.docx', '.doc', '.ppt', '.txt']
+documentExtensions = ['.pdf', '.docx', '.doc', '.ppt', '.txt', '.PDF']
+bookExtensions = ['.epub', '.mobi']
 mediaExtensions = ['.png', '.jpg', '.jpeg', 'mp4', '.PNG', '.mp4', '.mp3', '.svg']
 applicationExtensions = ['.exe', '.msi']
 compressedExtensions = ['.zip', '.7z', '.rar']
-filesExtensions = ['.apk']
+filesExtensions = ['.apk', '.ipa', '.iso']
 
 documentFolder = r"C:\Users\joash\Downloads\Documents"
 mediaFolder = r"C:\Users\joash\Downloads\Media"
+bookFolder = r"C:\Users\joash\Downloads\Books"
 applicationFolder = r"C:\Users\joash\DownloadsApplications"
 compressedFolder = r"C:\Users\joash\Downloads\Compressed"
 filesFolder = r"C:\Users\joash\Downloads\Files"
@@ -24,6 +26,13 @@ for f in folderLocation:
         else:
             os.mkdir(documentFolder)
             shutil.move(f, documentFolder)
+    
+    if os.path.splitext(f)[1] in bookExtensions:
+        if(path.exists(bookFolder)):
+            shutil.move(f, bookFolder)
+        else:
+            os.mkdir(bookFolder)
+            shutil.move(f, bookFolder)
     
     if os.path.splitext(f)[1] in mediaExtensions:
         if(path.exists(mediaFolder)):
